@@ -3,18 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_podcasts_app/screens/home_screen.dart';
 
 class BodyManager extends ChangeNotifier {
-  Color homeIconColor = Colors.blue;
-  Color exploreIconColor = Colors.black;
-  Color activityIconColor = Colors.black;
-  Widget getCurrentScreen(Screens screens) {
+  Screen homeScreen = Screen.HOME;
+  Screen exploreScreen = Screen.EXPLORE;
+  Screen activityScreen = Screen.ACTIVITY;
+  late Screen currentScreen = Screen.HOME;
+  Widget getCurrentScreen(Screen screens) {
     switch (screens) {
-      case Screens.HOME:
+      case Screen.HOME:
         return BodyCustomScrollView();
-      case Screens.EXPLORE:
+      case Screen.EXPLORE:
         return Scaffold(
           body: Container(),
         );
-      case Screens.ACTIVITY:
+      case Screen.ACTIVITY:
         return Scaffold(
           body: Container(),
         );
@@ -23,7 +24,21 @@ class BodyManager extends ChangeNotifier {
           body: Container(),
         );
     }
+    notifyListeners();
+  }
+
+  void changeCurrentScreen(Screen nextScreen) {
+    currentScreen = nextScreen;
+    notifyListeners();
+  }
+
+  bool determineIfItsTheCurrentScreen(Screen screen) {
+    return currentScreen == screen;
   }
 }
 
-enum Screens { HOME, EXPLORE, ACTIVITY }
+enum Screen {
+  HOME,
+  EXPLORE,
+  ACTIVITY,
+}
