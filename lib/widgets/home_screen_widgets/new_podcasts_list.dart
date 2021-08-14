@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_podcasts_app/widgets/new_podcast_card.dart';
-import 'package:google_podcasts_app/widgets/subscription_list.dart';
+import 'package:google_podcasts_app/widgets/home_screen_widgets/new_podcast_card.dart';
+import 'package:google_podcasts_app/widgets/home_screen_widgets/subscription_list.dart';
 
 class NewPodcastsList extends StatelessWidget {
   const NewPodcastsList({Key? key}) : super(key: key);

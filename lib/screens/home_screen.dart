@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_podcasts_app/constants/colors.dart';
 import 'package:google_podcasts_app/providers/body_manager.dart';
-import 'package:google_podcasts_app/widgets/bottom_app_bar_icon.dart';
-import 'package:google_podcasts_app/widgets/new_podcasts_list.dart';
+import 'package:google_podcasts_app/widgets/home_screen_widgets/bottom_app_bar_icon.dart';
+import 'package:google_podcasts_app/widgets/header_Google_widget.dart';
+import 'package:google_podcasts_app/widgets/home_screen_widgets/new_podcasts_list.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -56,6 +57,7 @@ class HomeScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 5, left: 5),
       child: GestureDetector(
+        onPanStart: (dataWhileTouching) {},
         child: Container(
           height: 50,
           child: Row(
@@ -127,62 +129,5 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class BodyCustomScrollView extends StatelessWidget {
-  const BodyCustomScrollView({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [_buildSliverAppBar(), const NewPodcastsList()],
-    );
-  }
-
-  Widget _buildSliverAppBar() {
-    return SliverAppBar(
-      backgroundColor: Colors.white,
-      expandedHeight: 50,
-      centerTitle: true,
-      actions: [
-        CircleAvatar(
-          child: Placeholder(),
-        )
-      ],
-      title: RichText(
-        text: TextSpan(
-          children: <TextSpan>[
-            _makeTextSpanForGoogleWord(
-                letter: 'G' /*TODO:adding the colors to the constants */,
-                colorOfTheLetter: MyColors.G_LETTER_COLOR_IN_GOOGLE_NAME),
-            _makeTextSpanForGoogleWord(
-              letter: 'o' /* TODO:adding the colors to the constants */,
-              colorOfTheLetter: MyColors.G_LETTER_COLOR_IN_GOOGLE_NAME,
-            ),
-            _makeTextSpanForGoogleWord(
-              letter: 'o' /*TODO:adding the colors to the constants */,
-              colorOfTheLetter: MyColors.G_LETTER_COLOR_IN_GOOGLE_NAME,
-            ),
-            _makeTextSpanForGoogleWord(
-              letter: 'g' /*TODO:adding the colors to the constants */,
-              colorOfTheLetter: MyColors.G_LETTER_COLOR_IN_GOOGLE_NAME,
-            ),
-            _makeTextSpanForGoogleWord(
-              letter: 'l' /*TODO:adding the colors to the constants */,
-              colorOfTheLetter: MyColors.G_LETTER_COLOR_IN_GOOGLE_NAME,
-            ),
-            _makeTextSpanForGoogleWord(
-              letter: 'e' /*TODO:adding the colors to the constants */,
-              colorOfTheLetter: MyColors.G_LETTER_COLOR_IN_GOOGLE_NAME,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  TextSpan _makeTextSpanForGoogleWord(
-      {required String letter, required Color colorOfTheLetter}) {
-    return TextSpan(text: letter, style: TextStyle(color: colorOfTheLetter));
   }
 }
